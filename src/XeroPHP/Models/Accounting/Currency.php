@@ -1,33 +1,34 @@
 <?php
-
 namespace XeroPHP\Models\Accounting;
 
 use XeroPHP\Remote;
 
 class Currency extends Remote\Model
 {
+
     /**
-     * This property has been removed from the Xero API.
+     * This property has been removed from the Xero API
      *
      * @property string ModifiedAfter
-     *
      * @deprecated
      */
 
     /**
-     * 3 letter alpha code for the currency – see list of currency codes.
+     * 3 letter alpha code for the currency – see list of currency codes
      *
      * @property string Code
      */
 
     /**
-     * Name of Currency.
+     * Name of Currency
      *
      * @property string Description
      */
 
+
+
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -36,8 +37,9 @@ class Currency extends Remote\Model
         return 'Currencies';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -46,8 +48,9 @@ class Currency extends Remote\Model
         return 'Currency';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -56,8 +59,9 @@ class Currency extends Remote\Model
         return '';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -66,24 +70,26 @@ class Currency extends Remote\Model
         return Remote\URL::API_CORE;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
         return [
             Remote\Request::METHOD_GET,
-            Remote\Request::METHOD_PUT,
+            Remote\Request::METHOD_PUT
         ];
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -92,7 +98,7 @@ class Currency extends Remote\Model
         return [
             'ModifiedAfter' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Code' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Description' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Description' => [false, self::PROPERTY_TYPE_STRING, null, false, false]
         ];
     }
 
@@ -103,7 +109,6 @@ class Currency extends Remote\Model
 
     /**
      * @return string
-     *
      * @deprecated
      */
     public function getModifiedAfter()
@@ -113,16 +118,13 @@ class Currency extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Currency
-     *
      * @deprecated
      */
     public function setModifiedAfter($value)
     {
         $this->propertyUpdated('ModifiedAfter', $value);
         $this->_data['ModifiedAfter'] = $value;
-
         return $this;
     }
 
@@ -136,14 +138,12 @@ class Currency extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Currency
      */
     public function setCode($value)
     {
         $this->propertyUpdated('Code', $value);
         $this->_data['Code'] = $value;
-
         return $this;
     }
 
@@ -157,14 +157,14 @@ class Currency extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Currency
      */
     public function setDescription($value)
     {
         $this->propertyUpdated('Description', $value);
         $this->_data['Description'] = $value;
-
         return $this;
     }
+
+
 }

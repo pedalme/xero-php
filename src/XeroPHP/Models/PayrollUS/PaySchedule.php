@@ -1,43 +1,45 @@
 <?php
-
 namespace XeroPHP\Models\PayrollUS;
 
 use XeroPHP\Remote;
 
 class PaySchedule extends Remote\Model
 {
+
     /**
-     * Name of the Pay Schedule.
+     * Name of the Pay Schedule
      *
      * @property string PayScheduleName
      */
 
     /**
-     * The Payment Date of the Pay Schedule.
+     * The Payment Date of the Pay Schedule
      *
      * @property \DateTimeInterface PaymentDate
      */
 
     /**
-     * The Start Date of the Pay Schedule.
+     * The Start Date of the Pay Schedule
      *
      * @property \DateTimeInterface StartDate
      */
 
     /**
-     * The ScheduleType defines the frequency in which an employee gets paid.
+     * The ScheduleType defines the frequency in which an employee gets paid
      *
      * @property string ScheduleType
      */
 
     /**
-     * Xero Identifier.
+     * Xero Identifier
      *
      * @property string PayScheduleId
      */
 
+
+
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -46,8 +48,9 @@ class PaySchedule extends Remote\Model
         return 'PaySchedules';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -56,8 +59,9 @@ class PaySchedule extends Remote\Model
         return 'PaySchedule';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -66,8 +70,9 @@ class PaySchedule extends Remote\Model
         return 'PayScheduleId';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -76,24 +81,26 @@ class PaySchedule extends Remote\Model
         return Remote\URL::API_PAYROLL;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
         return [
             Remote\Request::METHOD_POST,
-            Remote\Request::METHOD_GET,
+            Remote\Request::METHOD_GET
         ];
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -104,7 +111,7 @@ class PaySchedule extends Remote\Model
             'PaymentDate' => [true, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
             'StartDate' => [true, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
             'ScheduleType' => [true, self::PROPERTY_TYPE_ENUM, null, false, false],
-            'PayScheduleId' => [false, self::PROPERTY_TYPE_GUID, null, false, false],
+            'PayScheduleId' => [false, self::PROPERTY_TYPE_GUID, null, false, false]
         ];
     }
 
@@ -123,14 +130,12 @@ class PaySchedule extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return PaySchedule
      */
     public function setPayScheduleName($value)
     {
         $this->propertyUpdated('PayScheduleName', $value);
         $this->_data['PayScheduleName'] = $value;
-
         return $this;
     }
 
@@ -144,14 +149,12 @@ class PaySchedule extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return PaySchedule
      */
     public function setPaymentDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('PaymentDate', $value);
         $this->_data['PaymentDate'] = $value;
-
         return $this;
     }
 
@@ -165,14 +168,12 @@ class PaySchedule extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return PaySchedule
      */
     public function setStartDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;
-
         return $this;
     }
 
@@ -186,14 +187,12 @@ class PaySchedule extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return PaySchedule
      */
     public function setScheduleType($value)
     {
         $this->propertyUpdated('ScheduleType', $value);
         $this->_data['ScheduleType'] = $value;
-
         return $this;
     }
 
@@ -207,14 +206,14 @@ class PaySchedule extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return PaySchedule
      */
     public function setPayScheduleId($value)
     {
         $this->propertyUpdated('PayScheduleId', $value);
         $this->_data['PayScheduleId'] = $value;
-
         return $this;
     }
+
+
 }

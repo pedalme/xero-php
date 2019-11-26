@@ -1,5 +1,4 @@
 <?php
-
 namespace XeroPHP\Models\PayrollAU\Employee;
 
 use XeroPHP\Remote;
@@ -9,14 +8,15 @@ use XeroPHP\Models\PayrollAU\Payslip\ReimbursementLine;
 
 class OpeningBalance extends Remote\Model
 {
+
     /**
-     * Opening Balance Date. (YYYY-MM-DD).
+     * Opening Balance Date. (YYYY-MM-DD)
      *
      * @property \DateTimeInterface OpeningBalanceDate
      */
 
     /**
-     * Opening Balance tax.
+     * Opening Balance tax
      *
      * @property string Tax
      */
@@ -52,55 +52,57 @@ class OpeningBalance extends Remote\Model
      */
 
     /**
-     * Xero earnings rate identifier.
+     * Xero earnings rate identifier
      *
      * @property string EarningsRateID
      */
 
     /**
-     * Reimbursement type amount.
+     * Reimbursement type amount
      *
      * @property float Amount
      */
 
     /**
-     * Xero deduction type identifier.
+     * Xero deduction type identifier
      *
      * @property string DeductionTypeID
      */
 
     /**
-     * Xero super membership ID.
+     * Xero super membership ID
      *
      * @property string SuperMembershipID
      */
 
     /**
-     * Calculation type for Super line.
+     * Calculation type for Super line
      *
      * @property string CalculationType
      */
 
     /**
-     * Xero reimbursement type identifier.
+     * Xero reimbursement type identifier
      *
      * @property string ReimbursementTypeID
      */
 
     /**
-     * Xero leave type identifier.
+     * Xero leave type identifier
      *
      * @property string LeaveTypeID
      */
 
     /**
-     * Leave number of units.
+     * Leave number of units
      *
      * @property string NumberOfUnits
      */
 
+
+
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -109,8 +111,9 @@ class OpeningBalance extends Remote\Model
         return 'OpeningBalances';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -119,8 +122,9 @@ class OpeningBalance extends Remote\Model
         return 'OpeningBalance';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -129,8 +133,9 @@ class OpeningBalance extends Remote\Model
         return '';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -139,8 +144,9 @@ class OpeningBalance extends Remote\Model
         return Remote\URL::API_PAYROLL;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
@@ -149,12 +155,13 @@ class OpeningBalance extends Remote\Model
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -175,7 +182,7 @@ class OpeningBalance extends Remote\Model
             'CalculationType' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'ReimbursementTypeID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'LeaveTypeID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'NumberOfUnits' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'NumberOfUnits' => [false, self::PROPERTY_TYPE_STRING, null, false, false]
         ];
     }
 
@@ -194,14 +201,12 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return OpeningBalance
      */
     public function setOpeningBalanceDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('OpeningBalanceDate', $value);
         $this->_data['OpeningBalanceDate'] = $value;
-
         return $this;
     }
 
@@ -215,19 +220,18 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setTax($value)
     {
         $this->propertyUpdated('Tax', $value);
         $this->_data['Tax'] = $value;
-
         return $this;
     }
 
     /**
      * @return EarningsLine[]|Remote\Collection
+     * Always returns a collection, switch is for type hinting
      */
     public function getEarningsLines()
     {
@@ -236,22 +240,21 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param EarningsLine $value
-     *
      * @return OpeningBalance
      */
     public function addEarningsLine(EarningsLine $value)
     {
         $this->propertyUpdated('EarningsLines', $value);
-        if (! isset($this->_data['EarningsLines'])) {
+        if (!isset($this->_data['EarningsLines'])) {
             $this->_data['EarningsLines'] = new Remote\Collection();
         }
         $this->_data['EarningsLines'][] = $value;
-
         return $this;
     }
 
     /**
      * @return DeductionLine[]|Remote\Collection
+     * Always returns a collection, switch is for type hinting
      */
     public function getDeductionLines()
     {
@@ -260,17 +263,15 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param DeductionLine $value
-     *
      * @return OpeningBalance
      */
     public function addDeductionLine(DeductionLine $value)
     {
         $this->propertyUpdated('DeductionLines', $value);
-        if (! isset($this->_data['DeductionLines'])) {
+        if (!isset($this->_data['DeductionLines'])) {
             $this->_data['DeductionLines'] = new Remote\Collection();
         }
         $this->_data['DeductionLines'][] = $value;
-
         return $this;
     }
 
@@ -284,19 +285,18 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setSuperLine($value)
     {
         $this->propertyUpdated('SuperLines', $value);
         $this->_data['SuperLines'] = $value;
-
         return $this;
     }
 
     /**
      * @return ReimbursementLine[]|Remote\Collection
+     * Always returns a collection, switch is for type hinting
      */
     public function getReimbursementLines()
     {
@@ -305,17 +305,15 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param ReimbursementLine $value
-     *
      * @return OpeningBalance
      */
     public function addReimbursementLine(ReimbursementLine $value)
     {
         $this->propertyUpdated('ReimbursementLines', $value);
-        if (! isset($this->_data['ReimbursementLines'])) {
+        if (!isset($this->_data['ReimbursementLines'])) {
             $this->_data['ReimbursementLines'] = new Remote\Collection();
         }
         $this->_data['ReimbursementLines'][] = $value;
-
         return $this;
     }
 
@@ -329,14 +327,12 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setLeaveLine($value)
     {
         $this->propertyUpdated('LeaveLines', $value);
         $this->_data['LeaveLines'] = $value;
-
         return $this;
     }
 
@@ -350,14 +346,12 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setEarningsRateID($value)
     {
         $this->propertyUpdated('EarningsRateID', $value);
         $this->_data['EarningsRateID'] = $value;
-
         return $this;
     }
 
@@ -371,14 +365,12 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param float $value
-     *
      * @return OpeningBalance
      */
     public function setAmount($value)
     {
         $this->propertyUpdated('Amount', $value);
         $this->_data['Amount'] = $value;
-
         return $this;
     }
 
@@ -392,14 +384,12 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setDeductionTypeID($value)
     {
         $this->propertyUpdated('DeductionTypeID', $value);
         $this->_data['DeductionTypeID'] = $value;
-
         return $this;
     }
 
@@ -413,14 +403,12 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setSuperMembershipID($value)
     {
         $this->propertyUpdated('SuperMembershipID', $value);
         $this->_data['SuperMembershipID'] = $value;
-
         return $this;
     }
 
@@ -434,14 +422,12 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setCalculationType($value)
     {
         $this->propertyUpdated('CalculationType', $value);
         $this->_data['CalculationType'] = $value;
-
         return $this;
     }
 
@@ -455,14 +441,12 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setReimbursementTypeID($value)
     {
         $this->propertyUpdated('ReimbursementTypeID', $value);
         $this->_data['ReimbursementTypeID'] = $value;
-
         return $this;
     }
 
@@ -476,14 +460,12 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setLeaveTypeID($value)
     {
         $this->propertyUpdated('LeaveTypeID', $value);
         $this->_data['LeaveTypeID'] = $value;
-
         return $this;
     }
 
@@ -497,14 +479,14 @@ class OpeningBalance extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return OpeningBalance
      */
     public function setNumberOfUnit($value)
     {
         $this->propertyUpdated('NumberOfUnits', $value);
         $this->_data['NumberOfUnits'] = $value;
-
         return $this;
     }
+
+
 }

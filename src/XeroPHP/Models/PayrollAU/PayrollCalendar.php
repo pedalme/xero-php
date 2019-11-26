@@ -1,25 +1,25 @@
 <?php
-
 namespace XeroPHP\Models\PayrollAU;
 
 use XeroPHP\Remote;
 
 class PayrollCalendar extends Remote\Model
 {
+
     /**
-     * Xero identifier.
+     * Xero identifier
      *
      * @property string PayrollCalendarID
      */
 
     /**
-     * Name of the Payroll Calendar (max length = 100).
+     * Name of the Payroll Calendar (max length = 100)
      *
      * @property string Name
      */
 
     /**
-     * See Payroll Calendar types.
+     * See Payroll Calendar types
      *
      * @property string CalendarType
      */
@@ -36,20 +36,18 @@ class PayrollCalendar extends Remote\Model
      *
      * @property \DateTimeInterface PaymentDate
      */
-    const CALENDARTYPE_WEEKLY = 'WEEKLY';
 
-    const CALENDARTYPE_FORTNIGHTLY = 'FORTNIGHTLY';
 
-    const CALENDARTYPE_FOURWEEKLY = 'FOURWEEKLY';
-
-    const CALENDARTYPE_MONTHLY = 'MONTHLY';
-
+    const CALENDARTYPE_WEEKLY       = 'WEEKLY';
+    const CALENDARTYPE_FORTNIGHTLY  = 'FORTNIGHTLY';
+    const CALENDARTYPE_FOURWEEKLY   = 'FOURWEEKLY';
+    const CALENDARTYPE_MONTHLY      = 'MONTHLY';
     const CALENDARTYPE_TWICEMONTHLY = 'TWICEMONTHLY';
+    const CALENDARTYPE_QUARTERLY    = 'QUARTERLY';
 
-    const CALENDARTYPE_QUARTERLY = 'QUARTERLY';
 
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -58,8 +56,9 @@ class PayrollCalendar extends Remote\Model
         return 'PayrollCalendars';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -68,8 +67,9 @@ class PayrollCalendar extends Remote\Model
         return 'PayrollCalendar';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -78,8 +78,9 @@ class PayrollCalendar extends Remote\Model
         return 'PayrollCalendarID';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -88,24 +89,26 @@ class PayrollCalendar extends Remote\Model
         return Remote\URL::API_PAYROLL;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
         return [
             Remote\Request::METHOD_POST,
-            Remote\Request::METHOD_GET,
+            Remote\Request::METHOD_GET
         ];
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -116,7 +119,7 @@ class PayrollCalendar extends Remote\Model
             'Name' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'CalendarType' => [true, self::PROPERTY_TYPE_ENUM, null, false, false],
             'StartDate' => [true, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
-            'PaymentDate' => [true, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
+            'PaymentDate' => [true, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false]
         ];
     }
 
@@ -135,14 +138,12 @@ class PayrollCalendar extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return PayrollCalendar
      */
     public function setPayrollCalendarID($value)
     {
         $this->propertyUpdated('PayrollCalendarID', $value);
         $this->_data['PayrollCalendarID'] = $value;
-
         return $this;
     }
 
@@ -156,14 +157,12 @@ class PayrollCalendar extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return PayrollCalendar
      */
     public function setName($value)
     {
         $this->propertyUpdated('Name', $value);
         $this->_data['Name'] = $value;
-
         return $this;
     }
 
@@ -177,14 +176,12 @@ class PayrollCalendar extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return PayrollCalendar
      */
     public function setCalendarType($value)
     {
         $this->propertyUpdated('CalendarType', $value);
         $this->_data['CalendarType'] = $value;
-
         return $this;
     }
 
@@ -198,14 +195,12 @@ class PayrollCalendar extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return PayrollCalendar
      */
     public function setStartDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;
-
         return $this;
     }
 
@@ -219,14 +214,14 @@ class PayrollCalendar extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return PayrollCalendar
      */
     public function setPaymentDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('PaymentDate', $value);
         $this->_data['PaymentDate'] = $value;
-
         return $this;
     }
+
+
 }

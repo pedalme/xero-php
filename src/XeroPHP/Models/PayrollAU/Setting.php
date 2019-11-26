@@ -1,5 +1,4 @@
 <?php
-
 namespace XeroPHP\Models\PayrollAU;
 
 use XeroPHP\Remote;
@@ -8,27 +7,30 @@ use XeroPHP\Models\PayrollAU\Setting\TrackingCategory;
 
 class Setting extends Remote\Model
 {
+
     /**
      * Payroll Account details for SuperExpense, SuperLiabilty, WagesExpense, PAYGLiability & WagesPayable.
-     *  See Accounts.
+     *  See Accounts
      *
      * @property Account[] Accounts
      */
 
     /**
-     * Tracking categories for Employee’s and Timesheet’s.  See Tracking Categories.
+     * Tracking categories for Employee’s and Timesheet’s.  See Tracking Categories
      *
      * @property TrackingCategory[] TrackingCategories
      */
 
     /**
-     * Number of days in the Payroll year.
+     * Number of days in the Payroll year
      *
      * @property string DaysInPayrollYear
      */
 
+
+
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -37,8 +39,9 @@ class Setting extends Remote\Model
         return 'Settings';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -47,8 +50,9 @@ class Setting extends Remote\Model
         return 'Setting';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -57,8 +61,9 @@ class Setting extends Remote\Model
         return '';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -67,23 +72,25 @@ class Setting extends Remote\Model
         return Remote\URL::API_PAYROLL;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
         return [
-            Remote\Request::METHOD_GET,
+            Remote\Request::METHOD_GET
         ];
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -92,7 +99,7 @@ class Setting extends Remote\Model
         return [
             'Accounts' => [false, self::PROPERTY_TYPE_OBJECT, 'PayrollAU\\Setting\\Account', true, false],
             'TrackingCategories' => [false, self::PROPERTY_TYPE_OBJECT, 'PayrollAU\\Setting\\TrackingCategory', true, false],
-            'DaysInPayrollYear' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'DaysInPayrollYear' => [false, self::PROPERTY_TYPE_STRING, null, false, false]
         ];
     }
 
@@ -103,6 +110,7 @@ class Setting extends Remote\Model
 
     /**
      * @return Account[]|Remote\Collection
+     * Always returns a collection, switch is for type hinting
      */
     public function getAccounts()
     {
@@ -111,22 +119,21 @@ class Setting extends Remote\Model
 
     /**
      * @param Account $value
-     *
      * @return Setting
      */
     public function addAccount(Account $value)
     {
         $this->propertyUpdated('Accounts', $value);
-        if (! isset($this->_data['Accounts'])) {
+        if (!isset($this->_data['Accounts'])) {
             $this->_data['Accounts'] = new Remote\Collection();
         }
         $this->_data['Accounts'][] = $value;
-
         return $this;
     }
 
     /**
-     * @return Remote\Collection|TrackingCategory[]
+     * @return TrackingCategory[]|Remote\Collection
+     * Always returns a collection, switch is for type hinting
      */
     public function getTrackingCategories()
     {
@@ -135,17 +142,15 @@ class Setting extends Remote\Model
 
     /**
      * @param TrackingCategory $value
-     *
      * @return Setting
      */
     public function addTrackingCategory(TrackingCategory $value)
     {
         $this->propertyUpdated('TrackingCategories', $value);
-        if (! isset($this->_data['TrackingCategories'])) {
+        if (!isset($this->_data['TrackingCategories'])) {
             $this->_data['TrackingCategories'] = new Remote\Collection();
         }
         $this->_data['TrackingCategories'][] = $value;
-
         return $this;
     }
 
@@ -159,14 +164,14 @@ class Setting extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Setting
      */
     public function setDaysInPayrollYear($value)
     {
         $this->propertyUpdated('DaysInPayrollYear', $value);
         $this->_data['DaysInPayrollYear'] = $value;
-
         return $this;
     }
+
+
 }

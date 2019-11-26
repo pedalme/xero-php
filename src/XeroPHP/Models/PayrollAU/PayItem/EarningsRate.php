@@ -1,64 +1,63 @@
 <?php
-
 namespace XeroPHP\Models\PayrollAU\PayItem;
 
 use XeroPHP\Remote;
 
 class EarningsRate extends Remote\Model
 {
+
     /**
-     * Name of the earnings rate (max length = 100).
+     * Name of the earnings rate (max length = 100)
      *
      * @property string Name
      */
 
     /**
-     * This property has been removed from the Xero API.
+     * This property has been removed from the Xero API
      *
      * @property string DisplayName
-     *
      * @deprecated
      */
 
     /**
-     * See Accounts.
+     * See Accounts
      *
      * @property string AccountCode
      */
 
     /**
-     * Type of units used to record earnings (max length = 50). Only When RateType is RATEPERUNIT.
+     * Type of units used to record earnings (max length = 50). Only When RateType is RATEPERUNIT
      *
      * @property string TypeOfUnits
      */
 
     /**
      * Most payments are subject to tax, so you should only set this value if you are sure that a payment
-     * is exempt from PAYG withholding.
+     * is exempt from PAYG withholding
      *
      * @property string IsExemptFromTax
      */
 
     /**
-     * See the ATO website for details of which payments are exempt from SGC.
+     * See the ATO website for details of which payments are exempt from SGC
      *
      * @property string IsExemptFromSuper
      */
 
     /**
-     * See EarningsTypes.
+     * See EarningsTypes
      *
      * @property string EarningsType
      */
 
     /**
-     * Xero identifier.
+     * Xero identifier
      *
      * @property string EarningsRateID
      */
 
     /**
-     * See RateTypes.
+     * See RateTypes
      *
      * @property string RateType
      */
@@ -71,42 +70,37 @@ class EarningsRate extends Remote\Model
 
     /**
      * This is the multiplier used to calculate the rate per unit, based on the employee’s ordinary
-     * earnings rate. For example, for time and a half enter 1.5. Only applicable if RateType is MULTIPLE.
+     * earnings rate. For example, for time and a half enter 1.5. Only applicable if RateType is MULTIPLE
      *
      * @property float Multiplier
      */
 
     /**
-     * Indicates that this earnings rate should accrue leave. Only applicable if RateType is MULTIPLE.
+     * Indicates that this earnings rate should accrue leave. Only applicable if RateType is MULTIPLE
      *
      * @property float AccrueLeave
      */
 
     /**
-     * Option Amount for FIXEDAMOUNT RateType EarningsRate.
+     * Option Amount for FIXEDAMOUNT RateType EarningsRate
      *
      * @property float Amount
      */
-    const EARNINGSTYPE_FIXED = 'FIXED';
 
+
+    const EARNINGSTYPE_FIXED                = 'FIXED';
     const EARNINGSTYPE_ORDINARYTIMEEARNINGS = 'ORDINARYTIMEEARNINGS';
-
-    const EARNINGSTYPE_OVERTIMEEARNINGS = 'OVERTIMEEARNINGS';
-
-    const EARNINGSTYPE_ALLOWANCE = 'ALLOWANCE';
-
-    const EARNINGSTYPE_LUMPSUMD = 'LUMPSUMD';
-    
-    const EARNINGS_TYPE_EMPLOYMENTTERMINATIONPAYMENT = 'EMPLOYMENTTERMINATIONPAYMENT';
+    const EARNINGSTYPE_OVERTIMEEARNINGS     = 'OVERTIMEEARNINGS';
+    const EARNINGSTYPE_ALLOWANCE            = 'ALLOWANCE';
+    const EARNINGSTYPE_LUMPSUMD             = 'LUMPSUMD';
 
     const RATETYPE_FIXEDAMOUNT = 'FIXEDAMOUNT';
-
-    const RATETYPE_MULTIPLE = 'MULTIPLE';
-
+    const RATETYPE_MULTIPLE    = 'MULTIPLE';
     const RATETYPE_RATEPERUNIT = 'RATEPERUNIT';
 
+
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -115,8 +109,9 @@ class EarningsRate extends Remote\Model
         return 'EarningsRates';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -125,8 +120,9 @@ class EarningsRate extends Remote\Model
         return 'EarningsRate';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -135,8 +131,9 @@ class EarningsRate extends Remote\Model
         return 'EarningsRateID';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -145,8 +142,9 @@ class EarningsRate extends Remote\Model
         return Remote\URL::API_PAYROLL;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
@@ -155,12 +153,13 @@ class EarningsRate extends Remote\Model
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -179,7 +178,7 @@ class EarningsRate extends Remote\Model
             'RatePerUnit' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
             'Multiplier' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
             'AccrueLeave' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
-            'Amount' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false],
+            'Amount' => [false, self::PROPERTY_TYPE_FLOAT, null, false, false]
         ];
     }
 
@@ -198,20 +197,17 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return EarningsRate
      */
     public function setName($value)
     {
         $this->propertyUpdated('Name', $value);
         $this->_data['Name'] = $value;
-
         return $this;
     }
 
     /**
      * @return string
-     *
      * @deprecated
      */
     public function getDisplayName()
@@ -221,16 +217,13 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return EarningsRate
-     *
      * @deprecated
      */
     public function setDisplayName($value)
     {
         $this->propertyUpdated('DisplayName', $value);
         $this->_data['DisplayName'] = $value;
-
         return $this;
     }
 
@@ -244,14 +237,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return EarningsRate
      */
     public function setAccountCode($value)
     {
         $this->propertyUpdated('AccountCode', $value);
         $this->_data['AccountCode'] = $value;
-
         return $this;
     }
 
@@ -265,14 +256,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return EarningsRate
      */
     public function setTypeOfUnit($value)
     {
         $this->propertyUpdated('TypeOfUnits', $value);
         $this->_data['TypeOfUnits'] = $value;
-
         return $this;
     }
 
@@ -286,14 +275,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return EarningsRate
      */
     public function setIsExemptFromTax($value)
     {
         $this->propertyUpdated('IsExemptFromTax', $value);
         $this->_data['IsExemptFromTax'] = $value;
-
         return $this;
     }
 
@@ -307,14 +294,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return EarningsRate
      */
     public function setIsExemptFromSuper($value)
     {
         $this->propertyUpdated('IsExemptFromSuper', $value);
         $this->_data['IsExemptFromSuper'] = $value;
-
         return $this;
     }
 
@@ -328,14 +313,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return EarningsRate
      */
     public function setEarningsType($value)
     {
         $this->propertyUpdated('EarningsType', $value);
         $this->_data['EarningsType'] = $value;
-
         return $this;
     }
 
@@ -349,14 +332,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return EarningsRate
      */
     public function setEarningsRateID($value)
     {
         $this->propertyUpdated('EarningsRateID', $value);
         $this->_data['EarningsRateID'] = $value;
-
         return $this;
     }
 
@@ -370,14 +351,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return EarningsRate
      */
     public function setRateType($value)
     {
         $this->propertyUpdated('RateType', $value);
         $this->_data['RateType'] = $value;
-
         return $this;
     }
 
@@ -391,14 +370,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param float $value
-     *
      * @return EarningsRate
      */
     public function setRatePerUnit($value)
     {
         $this->propertyUpdated('RatePerUnit', $value);
         $this->_data['RatePerUnit'] = $value;
-
         return $this;
     }
 
@@ -412,14 +389,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param float $value
-     *
      * @return EarningsRate
      */
     public function setMultiplier($value)
     {
         $this->propertyUpdated('Multiplier', $value);
         $this->_data['Multiplier'] = $value;
-
         return $this;
     }
 
@@ -433,14 +408,12 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param float $value
-     *
      * @return EarningsRate
      */
     public function setAccrueLeave($value)
     {
         $this->propertyUpdated('AccrueLeave', $value);
         $this->_data['AccrueLeave'] = $value;
-
         return $this;
     }
 
@@ -454,14 +427,14 @@ class EarningsRate extends Remote\Model
 
     /**
      * @param float $value
-     *
      * @return EarningsRate
      */
     public function setAmount($value)
     {
         $this->propertyUpdated('Amount', $value);
         $this->_data['Amount'] = $value;
-
         return $this;
     }
+
+
 }

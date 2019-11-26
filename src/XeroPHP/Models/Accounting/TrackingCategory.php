@@ -1,5 +1,4 @@
 <?php
-
 namespace XeroPHP\Models\Accounting;
 
 use XeroPHP\Remote;
@@ -7,38 +6,41 @@ use XeroPHP\Models\Accounting\TrackingCategory\TrackingOption;
 
 class TrackingCategory extends Remote\Model
 {
+
     /**
-     * The Xero identifier for a tracking categorye.g. 297c2dc5-cc47-4afd-8ec8-74990b8761e9.
+     * The Xero identifier for a tracking categorye.g. 297c2dc5-cc47-4afd-8ec8-74990b8761e9
      *
      * @property string TrackingCategoryID
      */
 
     /**
-     * The name of the tracking category e.g. Department, Region (max length = 100).
+     * The name of the tracking category e.g. Department, Region (max length = 100)
      *
      * @property string Name
      */
 
     /**
-     * The status of a tracking category.
+     * The status of a tracking category
      *
      * @property string Status
      */
 
     /**
-     * See Tracking Options.
+     * See Tracking Options
      *
      * @property TrackingOption[] Options
      */
 
     /**
-     * Selected Option name.
+     * Selected Option name
      *
      * @property string Option
      */
 
+
+
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -47,8 +49,9 @@ class TrackingCategory extends Remote\Model
         return 'TrackingCategories';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -57,8 +60,9 @@ class TrackingCategory extends Remote\Model
         return 'TrackingCategory';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -67,8 +71,9 @@ class TrackingCategory extends Remote\Model
         return 'TrackingCategoryID';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -77,8 +82,9 @@ class TrackingCategory extends Remote\Model
         return Remote\URL::API_CORE;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
@@ -86,17 +92,18 @@ class TrackingCategory extends Remote\Model
             Remote\Request::METHOD_GET,
             Remote\Request::METHOD_PUT,
             Remote\Request::METHOD_POST,
-            Remote\Request::METHOD_DELETE,
+            Remote\Request::METHOD_DELETE
         ];
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -109,7 +116,7 @@ class TrackingCategory extends Remote\Model
             'TrackingOptionName' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Status' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Options' => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\TrackingCategory\\TrackingOption', true, true],
-            'Option' => [false, self::PROPERTY_TYPE_STRING, null, false, true],
+            'Option' => [false, self::PROPERTY_TYPE_STRING, null, false, true]
         ];
     }
 
@@ -128,14 +135,12 @@ class TrackingCategory extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return TrackingCategory
      */
     public function setTrackingCategoryID($value)
     {
         $this->propertyUpdated('TrackingCategoryID', $value);
         $this->_data['TrackingCategoryID'] = $value;
-
         return $this;
     }
 
@@ -149,17 +154,15 @@ class TrackingCategory extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return TrackingCategory
      */
     public function setName($value)
     {
         $this->propertyUpdated('Name', $value);
         $this->_data['Name'] = $value;
-
         return $this;
     }
-
+    
     /**
      * @return string
      */
@@ -170,14 +173,12 @@ class TrackingCategory extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return TrackingCategory
      */
     public function setTrackingCategoryName($value)
     {
         $this->propertyUpdated('TrackingCategoryName', $value);
         $this->_data['TrackingCategoryName'] = $value;
-
         return $this;
     }
 
@@ -191,14 +192,12 @@ class TrackingCategory extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return TrackingCategory
      */
     public function setTrackingOptionName($value)
     {
         $this->propertyUpdated('TrackingOptionName', $value);
         $this->_data['TrackingOptionName'] = $value;
-
         return $this;
     }
 
@@ -212,19 +211,18 @@ class TrackingCategory extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return TrackingCategory
      */
     public function setStatus($value)
     {
         $this->propertyUpdated('Status', $value);
         $this->_data['Status'] = $value;
-
         return $this;
     }
 
     /**
-     * @return Remote\Collection|TrackingOption[]
+     * @return TrackingOption[]|Remote\Collection
+     * Always returns a collection, switch is for type hinting
      */
     public function getOptions()
     {
@@ -233,24 +231,21 @@ class TrackingCategory extends Remote\Model
 
     /**
      * @param TrackingOption $value
-     *
      * @return TrackingCategory
      */
     public function addOption(TrackingOption $value)
     {
         $this->propertyUpdated('Options', $value);
-        if (! isset($this->_data['Options'])) {
+        if (!isset($this->_data['Options'])) {
             $this->_data['Options'] = new Remote\Collection();
         }
         $this->_data['Options'][] = $value;
-
         return $this;
     }
 
     /**
-     * Returns selected option name
-     *
      * @return string $value
+     * Returns selected option name
      */
     public function getOption()
     {
@@ -259,14 +254,14 @@ class TrackingCategory extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return TrackingCategory
      */
     public function setOption($value)
     {
         $this->propertyUpdated('Option', $value);
         $this->_data['Option'] = $value;
-
         return $this;
     }
+
+
 }

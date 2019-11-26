@@ -1,31 +1,33 @@
 <?php
-
 namespace XeroPHP\Models\PayrollUS\PayItem;
 
 use XeroPHP\Remote;
 
 class ReimbursementType extends Remote\Model
 {
+
     /**
-     * Name of the reimbursement type (max length = 50).
+     * Name of the reimbursement type (max length = 50)
      *
      * @property ReimbursementType ReimbursementType
      */
 
     /**
-     * See Accounts.
+     * See Accounts
      *
      * @property string ExpenseOrLiabilityAccountCode
      */
 
     /**
-     * Xero identifier.
+     * Xero identifier
      *
      * @property string ReimbursementTypeID
      */
 
+
+
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -34,8 +36,9 @@ class ReimbursementType extends Remote\Model
         return 'ReimbursementTypes';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -44,8 +47,9 @@ class ReimbursementType extends Remote\Model
         return 'ReimbursementType';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -54,8 +58,9 @@ class ReimbursementType extends Remote\Model
         return 'ReimbursementTypeID';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -64,8 +69,9 @@ class ReimbursementType extends Remote\Model
         return Remote\URL::API_PAYROLL;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
@@ -74,12 +80,13 @@ class ReimbursementType extends Remote\Model
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -88,7 +95,7 @@ class ReimbursementType extends Remote\Model
         return [
             'ReimbursementType' => [true, self::PROPERTY_TYPE_OBJECT, 'PayrollUS\\PayItem\\ReimbursementType', false, false],
             'ExpenseOrLiabilityAccountCode' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
-            'ReimbursementTypeID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'ReimbursementTypeID' => [false, self::PROPERTY_TYPE_STRING, null, false, false]
         ];
     }
 
@@ -107,14 +114,12 @@ class ReimbursementType extends Remote\Model
 
     /**
      * @param ReimbursementType $value
-     *
      * @return ReimbursementType
      */
-    public function setReimbursementType(self $value)
+    public function setReimbursementType(ReimbursementType $value)
     {
         $this->propertyUpdated('ReimbursementType', $value);
         $this->_data['ReimbursementType'] = $value;
-
         return $this;
     }
 
@@ -128,14 +133,12 @@ class ReimbursementType extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return ReimbursementType
      */
     public function setExpenseOrLiabilityAccountCode($value)
     {
         $this->propertyUpdated('ExpenseOrLiabilityAccountCode', $value);
         $this->_data['ExpenseOrLiabilityAccountCode'] = $value;
-
         return $this;
     }
 
@@ -149,14 +152,14 @@ class ReimbursementType extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return ReimbursementType
      */
     public function setReimbursementTypeID($value)
     {
         $this->propertyUpdated('ReimbursementTypeID', $value);
         $this->_data['ReimbursementTypeID'] = $value;
-
         return $this;
     }
+
+
 }

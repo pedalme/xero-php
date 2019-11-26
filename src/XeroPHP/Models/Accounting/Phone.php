@@ -1,42 +1,44 @@
 <?php
-
 namespace XeroPHP\Models\Accounting;
 
 use XeroPHP\Remote;
 
 class Phone extends Remote\Model
 {
+
     /**
+     * 
+     *
      * @property string PhoneType
      */
 
     /**
-     *  max length = 50.
+     *  max length = 50
      *
      * @property string PhoneNumber
      */
 
     /**
-     *  max length = 10.
+     *  max length = 10
      *
      * @property string PhoneAreaCode
      */
 
     /**
-     *  max length = 20.
+     *  max length = 20
      *
      * @property string PhoneCountryCode
      */
+
+
     const PHONE_TYPE_DEFAULT = 'DEFAULT';
+    const PHONE_TYPE_DDI     = 'DDI';
+    const PHONE_TYPE_MOBILE  = 'MOBILE';
+    const PHONE_TYPE_FAX     = 'FAX';
 
-    const PHONE_TYPE_DDI = 'DDI';
-
-    const PHONE_TYPE_MOBILE = 'MOBILE';
-
-    const PHONE_TYPE_FAX = 'FAX';
 
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -45,8 +47,9 @@ class Phone extends Remote\Model
         return 'Phones';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -55,8 +58,9 @@ class Phone extends Remote\Model
         return 'Phone';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -65,8 +69,9 @@ class Phone extends Remote\Model
         return '';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -75,8 +80,9 @@ class Phone extends Remote\Model
         return Remote\URL::API_CORE;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
@@ -85,12 +91,13 @@ class Phone extends Remote\Model
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -100,7 +107,7 @@ class Phone extends Remote\Model
             'PhoneType' => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
             'PhoneNumber' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'PhoneAreaCode' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'PhoneCountryCode' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'PhoneCountryCode' => [false, self::PROPERTY_TYPE_STRING, null, false, false]
         ];
     }
 
@@ -119,14 +126,12 @@ class Phone extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Phone
      */
     public function setPhoneType($value)
     {
         $this->propertyUpdated('PhoneType', $value);
         $this->_data['PhoneType'] = $value;
-
         return $this;
     }
 
@@ -140,14 +145,12 @@ class Phone extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Phone
      */
     public function setPhoneNumber($value)
     {
         $this->propertyUpdated('PhoneNumber', $value);
         $this->_data['PhoneNumber'] = $value;
-
         return $this;
     }
 
@@ -161,14 +164,12 @@ class Phone extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Phone
      */
     public function setPhoneAreaCode($value)
     {
         $this->propertyUpdated('PhoneAreaCode', $value);
         $this->_data['PhoneAreaCode'] = $value;
-
         return $this;
     }
 
@@ -182,14 +183,14 @@ class Phone extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Phone
      */
     public function setPhoneCountryCode($value)
     {
         $this->propertyUpdated('PhoneCountryCode', $value);
         $this->_data['PhoneCountryCode'] = $value;
-
         return $this;
     }
+
+
 }

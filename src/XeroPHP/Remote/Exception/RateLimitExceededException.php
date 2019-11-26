@@ -2,8 +2,8 @@
 
 namespace XeroPHP\Remote\Exception;
 
-use XeroPHP\Remote\Response;
 use XeroPHP\Remote\Exception;
+use XeroPHP\Remote\Response;
 
 class RateLimitExceededException extends Exception
 {
@@ -11,7 +11,7 @@ class RateLimitExceededException extends Exception
 
     protected $code = Response::STATUS_RATE_LIMIT_EXCEEDED;
 
-    protected $rateLimitProblem;
+    protected $rateLimitProblem = null;
 
     public function setRateLimitProblem($rateLimitProblem)
     {

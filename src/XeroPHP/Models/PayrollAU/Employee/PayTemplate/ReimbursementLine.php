@@ -1,31 +1,31 @@
 <?php
-
 namespace XeroPHP\Models\PayrollAU\Employee\PayTemplate;
 
 use XeroPHP\Remote;
 
 class ReimbursementLine extends Remote\Model
 {
+
     /**
-     * Xero reimbursement type identifier.
+     * Xero reimbursement type identifier
      *
      * @property string ReimbursementTypeID
      */
 
     /**
-     * The description of the reimbursement type.
+     * The description of the reimbursement type
      *
      * @property string Description
      */
 
     /**
-     * The amount of the reimbursement type.
+     * The amount of the reimbursement type
      *
      * @property float Amount
      */
 
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -34,8 +34,9 @@ class ReimbursementLine extends Remote\Model
         return 'ReimbursementLine';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -44,8 +45,9 @@ class ReimbursementLine extends Remote\Model
         return 'ReimbursementLine';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -54,8 +56,9 @@ class ReimbursementLine extends Remote\Model
         return '';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -64,8 +67,9 @@ class ReimbursementLine extends Remote\Model
         return Remote\URL::API_PAYROLL;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
@@ -74,12 +78,13 @@ class ReimbursementLine extends Remote\Model
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -88,7 +93,7 @@ class ReimbursementLine extends Remote\Model
         return [
             'ReimbursementTypeID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'Description' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Amount' => [false, self::PROPERTY_TYPE_FLOAT, null, true, false],
+            'Amount' => [false, self::PROPERTY_TYPE_FLOAT, null, true, false]
         ];
     }
 
@@ -107,14 +112,12 @@ class ReimbursementLine extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return ReimbursementLine
      */
     public function setReimbursementTypeID($value)
     {
         $this->propertyUpdated('ReimbursementTypeID', $value);
         $this->_data['ReimbursementTypeID'] = $value;
-
         return $this;
     }
 
@@ -128,14 +131,12 @@ class ReimbursementLine extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return ReimbursementLine
      */
     public function setDescription($value)
     {
         $this->propertyUpdated('Description', $value);
         $this->_data['Description'] = $value;
-
         return $this;
     }
 
@@ -149,14 +150,12 @@ class ReimbursementLine extends Remote\Model
 
     /**
      * @param float $value
-     *
      * @return ReimbursementLine
      */
     public function setAmount($value)
     {
         $this->propertyUpdated('Amount', $value);
         $this->_data['Amount'] = $value;
-
         return $this;
     }
 }

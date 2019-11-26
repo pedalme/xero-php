@@ -1,5 +1,4 @@
 <?php
-
 namespace XeroPHP\Models\Assets;
 
 use XeroPHP\Remote;
@@ -7,38 +6,39 @@ use XeroPHP\Models\Assets\AssetType\BookDepreciationSetting;
 
 class AssetType extends Remote\Model
 {
+
     /**
-     * The name of the asset type.
+     * The name of the asset type
      *
      * @property string assetTypeName
      */
 
     /**
-     * The asset account for fixed assets of this type.
+     * The asset account for fixed assets of this type
      *
      * @property string fixedAssetAccountId
      */
 
     /**
-     * The expense account for the depreciation of fixed assets of this type.
+     * The expense account for the depreciation of fixed assets of this type
      *
      * @property string depreciationExpenseAccountId
      */
 
     /**
-     * The account for accumulated depreciation of fixed assets of this type.
+     * The account for accumulated depreciation of fixed assets of this type
      *
      * @property string accumulatedDepreciationAccountId
      */
 
     /**
-     * See bookDepreciationSetting.
+     * See bookDepreciationSetting
      *
      * @property BookDepreciationSetting BookDepreciationSetting
      */
 
     /**
-     * Xero generated unique identifier for asset types.
+     * Xero generated unique identifier for asset types
      *
      * @property string assetTypeId
      */
@@ -50,8 +50,10 @@ class AssetType extends Remote\Model
      * @property string Locks
      */
 
+
+
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -60,8 +62,9 @@ class AssetType extends Remote\Model
         return 'AssetTypes';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -70,8 +73,9 @@ class AssetType extends Remote\Model
         return 'AssetType';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -80,8 +84,9 @@ class AssetType extends Remote\Model
         return 'assetTypeId';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -90,24 +95,26 @@ class AssetType extends Remote\Model
         return Remote\URL::API_ASSET;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
         return [
             Remote\Request::METHOD_GET,
-            Remote\Request::METHOD_POST,
+            Remote\Request::METHOD_POST
         ];
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -120,7 +127,7 @@ class AssetType extends Remote\Model
             'accumulatedDepreciationAccountId' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'BookDepreciationSetting' => [true, self::PROPERTY_TYPE_OBJECT, 'Assets\\AssetType\\BookDepreciationSetting', false, false],
             'assetTypeId' => [true, self::PROPERTY_TYPE_GUID, null, false, false],
-            'Locks' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Locks' => [true, self::PROPERTY_TYPE_STRING, null, false, false]
         ];
     }
 
@@ -139,14 +146,12 @@ class AssetType extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return AssetType
      */
     public function setassetTypeName($value)
     {
         $this->propertyUpdated('assetTypeName', $value);
         $this->_data['assetTypeName'] = $value;
-
         return $this;
     }
 
@@ -160,14 +165,12 @@ class AssetType extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return AssetType
      */
     public function setfixedAssetAccountId($value)
     {
         $this->propertyUpdated('fixedAssetAccountId', $value);
         $this->_data['fixedAssetAccountId'] = $value;
-
         return $this;
     }
 
@@ -181,14 +184,12 @@ class AssetType extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return AssetType
      */
     public function setdepreciationExpenseAccountId($value)
     {
         $this->propertyUpdated('depreciationExpenseAccountId', $value);
         $this->_data['depreciationExpenseAccountId'] = $value;
-
         return $this;
     }
 
@@ -202,14 +203,12 @@ class AssetType extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return AssetType
      */
     public function setaccumulatedDepreciationAccountId($value)
     {
         $this->propertyUpdated('accumulatedDepreciationAccountId', $value);
         $this->_data['accumulatedDepreciationAccountId'] = $value;
-
         return $this;
     }
 
@@ -223,14 +222,12 @@ class AssetType extends Remote\Model
 
     /**
      * @param BookDepreciationSetting $value
-     *
      * @return AssetType
      */
     public function setBookDepreciationSetting(BookDepreciationSetting $value)
     {
         $this->propertyUpdated('BookDepreciationSetting', $value);
         $this->_data['BookDepreciationSetting'] = $value;
-
         return $this;
     }
 
@@ -244,14 +241,12 @@ class AssetType extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return AssetType
      */
     public function setassetTypeId($value)
     {
         $this->propertyUpdated('assetTypeId', $value);
         $this->_data['assetTypeId'] = $value;
-
         return $this;
     }
 
@@ -265,14 +260,14 @@ class AssetType extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return AssetType
      */
     public function setLock($value)
     {
         $this->propertyUpdated('Locks', $value);
         $this->_data['Locks'] = $value;
-
         return $this;
     }
+
+
 }

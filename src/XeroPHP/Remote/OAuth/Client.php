@@ -3,10 +3,10 @@
 namespace XeroPHP\Remote\OAuth;
 
 use XeroPHP\Helpers;
-use XeroPHP\Remote\Request;
-use XeroPHP\Remote\OAuth\SignatureMethod\RSASHA1;
 use XeroPHP\Remote\OAuth\SignatureMethod\HMACSHA1;
 use XeroPHP\Remote\OAuth\SignatureMethod\PLAINTEXT;
+use XeroPHP\Remote\OAuth\SignatureMethod\RSASHA1;
+use XeroPHP\Remote\Request;
 
 /**
  * This is a class to manage a client OAuth session with the Xero APIs.
@@ -14,29 +14,28 @@ use XeroPHP\Remote\OAuth\SignatureMethod\PLAINTEXT;
  * which comes in the recommended php developer kit.
  *
  * @author Michael Calcinai
+ * @package XeroPHP\Remote\OAuth
  */
 class Client
 {
     //Supported hashing mechanisms
-    const SIGNATURE_RSA_SHA1 = 'RSA-SHA1';
-
+    const SIGNATURE_RSA_SHA1  = 'RSA-SHA1';
     const SIGNATURE_HMAC_SHA1 = 'HMAC-SHA1';
-
     const SIGNATURE_PLAINTEXT = 'PLAINTEXT';
 
     const OAUTH_VERSION = '1.0';
 
     const SIGN_LOCATION_HEADER = 'header';
-
-    const SIGN_LOCATION_QUERY = 'query_string';
+    const SIGN_LOCATION_QUERY  = 'query_string';
 
     private $config;
 
-    // "Cached" parameters - will change between signings.
+    /*
+     * "Cached" parameters - will change between signings.
+     */
     private $oauth_params;
 
     private $token_secret;
-
     private $verifier;
 
     /**
@@ -54,7 +53,6 @@ class Client
      * This method puts it in the oauth params in the Authorization header by default.
      *
      * @param Request $request Request to sign
-     *
      * @throws Exception
      */
     public function sign(Request $request)
@@ -68,16 +66,14 @@ class Client
                 //Needs escaping in the header, not in the QS
                 $oauth_params['oauth_signature'] = Helpers::escape($oauth_params['oauth_signature']);
 
-                $header = 'OAuth '.Helpers::flattenAssocArray($oauth_params, '%s="%s"', ', ');
+                $header = 'OAuth ' . Helpers::flattenAssocArray($oauth_params, '%s="%s"', ', ');
                 $request->setHeader(Request::HEADER_AUTHORIZATION, $header);
-
                 break;
 
             case self::SIGN_LOCATION_QUERY:
                 foreach ($oauth_params as $param_name => $param_value) {
                     $request->setParameter($param_name, $param_value);
                 }
-
                 break;
 
             default:
@@ -89,12 +85,13 @@ class Client
         $this->resetOAuthParams();
     }
 
+
     /**
      * Resets the instance for subsequent signing requests.
      */
     private function resetOAuthParams()
     {
-        $this->oauth_params = null;
+        unset($this->oauth_params);
     }
 
     /**
@@ -107,14 +104,14 @@ class Client
     private function getOAuthParams()
     {
         //this needs to be stateful until the request is signed, then it gets unset
-        if (! isset($this->oauth_params)) {
+        if (!isset($this->oauth_params)) {
             $this->oauth_params = [
-                'oauth_consumer_key' => $this->getConsumerKey(),
+                'oauth_consumer_key'     => $this->getConsumerKey(),
                 'oauth_signature_method' => $this->getSignatureMethod(),
-                'oauth_timestamp' => $this->getTimestamp(),
-                'oauth_nonce' => $this->getNonce(),
-                'oauth_callback' => $this->getCallback(),
-                'oauth_version' => self::OAUTH_VERSION,
+                'oauth_timestamp'        => $this->getTimestamp(),
+                'oauth_nonce'            => $this->getNonce(),
+                'oauth_callback'         => $this->getCallback(),
+                'oauth_version'          => self::OAUTH_VERSION
             ];
 
             if (null !== $token = $this->getToken()) {
@@ -134,10 +131,8 @@ class Client
      * consistency, pass the same constructor to each one.
      *
      * @param Request $request
-     *
-     * @throws Exception
-     *
      * @return string
+     * @throws Exception
      */
     private function getSignature(Request $request)
     {
@@ -148,7 +143,6 @@ class Client
                     $this->getSBS($request),
                     $this->getSigningSecret()
                 );
-
                 break;
             case self::SIGNATURE_HMAC_SHA1:
                 $signature = HMACSHA1::generateSignature(
@@ -156,15 +150,12 @@ class Client
                     $this->getSBS($request),
                     $this->getSigningSecret()
                 );
-
                 break;
             case self::SIGNATURE_PLAINTEXT:
                 $signature = PLAINTEXT::generateSignature(
-                    $this->config,
-                    $this->getSBS($request),
+                    $this->config, $this->getSBS($request),
                     $this->getSigningSecret()
                 );
-
                 break;
             default:
                 throw new Exception(
@@ -182,7 +173,6 @@ class Client
      * GET&https%3A%2F%2Fapi.xero.com%2Fapi.xro%2F2.0%2FContacts&oauth_consumer etc.
      *
      * @param Request $request
-     *
      * @return string
      */
     public function getSBS(Request $request)
@@ -212,43 +202,33 @@ class Client
      */
     private function getSigningSecret()
     {
-        $secret = $this->getConsumerSecret().'&';
+        $secret = $this->getConsumerSecret() . '&';
 
         if (null !== $token_secret = $this->getTokenSecret()) {
             $secret .= $token_secret;
         }
-
         return $secret;
     }
 
+
     /**
-     * This snippet was taken from implementations of the laravel/framework
-     * \Illuminate\Suppport\Str::random() method.
+     * Generic nonce generating function for the request.
+     * It's important that it's long enough as the spec says the
+     * server will reject any request that reuses one.
      *
+     * @param int $length
      * @return string
      */
-    private function getNonce()
+    private function getNonce($length = 20)
     {
-        $length = 20;
-        $nonce = '';
+        $parts = explode('.', number_format(microtime(true), 22, '.', ''));
+        if (!isset($parts[1])) {
+            $parts[1] = 0;
+        }
+        $nonce = base_convert($parts[1], 10, 36);
 
-        while (($len = strlen($nonce)) < $length) {
-            $size = $length - $len;
-
-            // this does not have to be cryptograpically secure, it just needs
-            // to to be random enough to not hit duplicate values, but it
-            // doesn't hurt to utilise `random_bytes` if it is available.
-            if (PHP_MAJOR_VERSION >= 7) {
-                $bytes = random_bytes($size);
-            } else {
-                $bytes = openssl_random_pseudo_bytes($size);
-
-                if ($bytes === false) {
-                    throw new Exception('Unable to generate random bytes for the nonce');
-                }
-            }
-
-            $nonce .= substr(str_replace(['/', '+', '='], '', base64_encode($bytes)), 0, $size);
+        for ($i = 0; $i < $length - strlen($nonce); $i++) {
+            $nonce .= base_convert(mt_rand(0, 35), 10, 36);
         }
 
         return $nonce;
@@ -265,7 +245,6 @@ class Client
     public function setToken($token)
     {
         $this->config['token'] = $token;
-
         return $this;
     }
 
@@ -274,8 +253,7 @@ class Client
         if (isset($this->config['token'])) {
             return $this->config['token'];
         }
-
-        
+        return null;
     }
 
     /**
@@ -312,27 +290,24 @@ class Client
 
     /**
      * @param string|null $oauth_token
-     *
      * @return string
      */
     public function getAuthorizeURL($oauth_token = null)
     {
-        if ($oauth_token === null) {
+        if ($oauth_token == null) {
             return $this->config['authorize_url'];
         }
 
         return $this->appendUrlQuery(
-            $this->config['authorize_url'],
-            compact('oauth_token')
+            $this->config['authorize_url'], compact('oauth_token')
         );
     }
 
     /**
      * Prepend URL with query string.
      *
-     * @param string $url
-     * @param array $query
-     *
+     * @param  string  $url
+     * @param  array  $query
      * @return string
      */
     protected function appendUrlQuery($url, $query)
@@ -345,8 +320,7 @@ class Client
     /**
      * Determine if the URL has a query string.
      *
-     * @param string $url
-     *
+     * @param  string  $url
      * @return bool
      */
     protected function urlHasQuery($url)
@@ -358,7 +332,6 @@ class Client
     public function setTokenSecret($secret)
     {
         $this->token_secret = $secret;
-
         return $this;
     }
 
@@ -367,8 +340,7 @@ class Client
         if (isset($this->token_secret)) {
             return $this->token_secret;
         }
-
-        
+        return null;
     }
 
     public function setVerifier($verifier)
@@ -383,7 +355,6 @@ class Client
         if (isset($this->verifier)) {
             return $this->verifier;
         }
-
-        
+        return null;
     }
 }

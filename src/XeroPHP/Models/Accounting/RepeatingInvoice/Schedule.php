@@ -1,56 +1,59 @@
 <?php
-
 namespace XeroPHP\Models\Accounting\RepeatingInvoice;
 
 use XeroPHP\Remote;
+use XeroPHP\Models\Accounting\Organisation\PaymentTerm;
 
 class Schedule extends Remote\Model
 {
+
     /**
-     * Integer used with the unit e.g. 1 (every 1 week), 2 (every 2 months).
+     * Integer used with the unit e.g. 1 (every 1 week), 2 (every 2 months)
      *
      * @property int Period
      */
 
     /**
-     * One of the following : WEEKLY or MONTHLY.
+     * One of the following : WEEKLY or MONTHLY
      *
      * @property string Unit
      */
 
     /**
-     * Integer used with due date type e.g 20 (of following month), 31 (of current month).
+     * Integer used with due date type e.g 20 (of following month), 31 (of current month)
      *
      * @property int DueDate
      */
 
     /**
-     * Get the due date type.
+     * See Payment Terms
      *
-     * @property string DueDateType
+     * @property PaymentTerm DueDateType
      */
 
     /**
      * Date the first invoice of the current version of the repeating schedule was generated (changes when
-     * repeating invoice is edited).
+     * repeating invoice is edited)
      *
      * @property \DateTimeInterface StartDate
      */
 
     /**
-     * The calendar date of the next invoice in the schedule to be generated.
+     * The calendar date of the next invoice in the schedule to be generated
      *
      * @property \DateTimeInterface NextScheduledDate
      */
 
     /**
-     * Invoice end date – only returned if the template has an end date set.
+     * Invoice end date – only returned if the template has an end date set
      *
      * @property \DateTimeInterface EndDate
      */
 
+
+
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -59,8 +62,9 @@ class Schedule extends Remote\Model
         return 'Schedule';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -69,8 +73,9 @@ class Schedule extends Remote\Model
         return 'Schedule';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -79,8 +84,9 @@ class Schedule extends Remote\Model
         return '';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -89,8 +95,9 @@ class Schedule extends Remote\Model
         return Remote\URL::API_CORE;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
@@ -99,12 +106,13 @@ class Schedule extends Remote\Model
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -114,10 +122,10 @@ class Schedule extends Remote\Model
             'Period' => [false, self::PROPERTY_TYPE_INT, null, false, false],
             'Unit' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'DueDate' => [false, self::PROPERTY_TYPE_INT, null, false, false],
-            'DueDateType' => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
+            'DueDateType' => [false, self::PROPERTY_TYPE_OBJECT, 'Accounting\\Organisation\\PaymentTerm', false, false],
             'StartDate' => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
             'NextScheduledDate' => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
-            'EndDate' => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false],
+            'EndDate' => [false, self::PROPERTY_TYPE_DATE, '\\DateTimeInterface', false, false]
         ];
     }
 
@@ -136,14 +144,12 @@ class Schedule extends Remote\Model
 
     /**
      * @param int $value
-     *
      * @return Schedule
      */
     public function setPeriod($value)
     {
         $this->propertyUpdated('Period', $value);
         $this->_data['Period'] = $value;
-
         return $this;
     }
 
@@ -157,14 +163,12 @@ class Schedule extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Schedule
      */
     public function setUnit($value)
     {
         $this->propertyUpdated('Unit', $value);
         $this->_data['Unit'] = $value;
-
         return $this;
     }
 
@@ -178,19 +182,17 @@ class Schedule extends Remote\Model
 
     /**
      * @param int $value
-     *
      * @return Schedule
      */
     public function setDueDate($value)
     {
         $this->propertyUpdated('DueDate', $value);
         $this->_data['DueDate'] = $value;
-
         return $this;
     }
 
     /**
-     * @return string
+     * @return PaymentTerm
      */
     public function getDueDateType()
     {
@@ -198,15 +200,13 @@ class Schedule extends Remote\Model
     }
 
     /**
-     * @param string $value
-     *
+     * @param PaymentTerm $value
      * @return Schedule
      */
-    public function setDueDateType($value)
+    public function setDueDateType(PaymentTerm $value)
     {
         $this->propertyUpdated('DueDateType', $value);
         $this->_data['DueDateType'] = $value;
-
         return $this;
     }
 
@@ -220,14 +220,12 @@ class Schedule extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return Schedule
      */
     public function setStartDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;
-
         return $this;
     }
 
@@ -241,14 +239,12 @@ class Schedule extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return Schedule
      */
     public function setNextScheduledDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('NextScheduledDate', $value);
         $this->_data['NextScheduledDate'] = $value;
-
         return $this;
     }
 
@@ -262,14 +258,14 @@ class Schedule extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return Schedule
      */
     public function setEndDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('EndDate', $value);
         $this->_data['EndDate'] = $value;
-
         return $this;
     }
+
+
 }

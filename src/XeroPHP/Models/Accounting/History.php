@@ -1,9 +1,12 @@
 <?php
 
+
 namespace XeroPHP\Models\Accounting;
 
+use XeroPHP\Application;
 use XeroPHP\Remote\Model;
 use XeroPHP\Remote\Request;
+use XeroPHP\Remote\URL;
 
 class History extends Model
 {
@@ -14,67 +17,67 @@ class History extends Model
      */
 
     /**
-     * UTC date that the history record was created.
+     * UTC date that the history record was created
      *
      * @property \DateTimeInterface DateUTC
      */
 
     /**
-     * The user responsible for the change ("System Generated" when the change happens via API).
+     * The user responsible for the change ("System Generated" when the change happens via API)
      *
      * @property string User
      */
 
     /**
-     * Description of the change event or transaction.
+     * Description of the change event or transaction
      *
      * @property string Details
      */
 
     /**
-     * Get the GUID Property if it exists.
+     * Get the GUID Property if it exists
      *
      * @return string
      */
-    public static function getGUIDProperty()
+    static function getGUIDProperty()
     {
         return '';
     }
 
     /**
-     * Get a list of properties.
+     * Get a list of properties
      *
      * @return array
      */
-    public static function getProperties()
+    static function getProperties()
     {
-        return [
-            'Changes' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+        return array(
+            'Changes' => array(false, self::PROPERTY_TYPE_STRING, null, false, false),
             'DateUTC' => [false, self::PROPERTY_TYPE_TIMESTAMP, '\\DateTimeInterface', false, false],
-            'User' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Details' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
-        ];
+            'User' => array(false, self::PROPERTY_TYPE_STRING, null, false, false),
+            'Details' => array(true, self::PROPERTY_TYPE_STRING, null, false, false)
+        );
     }
 
     /**
-     * Get a list of the supported HTTP Methods.
+     * Get a list of the supported HTTP Methods
      *
      * @return array
      */
-    public static function getSupportedMethods()
+    static function getSupportedMethods()
     {
-        return [
+        return array(
             Request::METHOD_GET,
-            Request::METHOD_PUT,
-        ];
+            Request::METHOD_PUT
+        );
     }
 
     /**
-     * return the URI of the resource (if any).
+     * return the URI of the resource (if any)
      *
      * @return string
      */
-    public static function getResourceURI()
+    static function getResourceURI()
     {
         return '';
     }
@@ -85,14 +88,6 @@ class History extends Model
     public function getChanges()
     {
         return $this->_data['Changes'];
-    }
-
-    /**
-     * @return \DateTimeInterface
-     */
-    public function getDateUTC()
-    {
-        return $this->_data['DateUTC'];
     }
 
     /**
@@ -113,14 +108,12 @@ class History extends Model
 
     /**
      * @param string $value
-     *
      * @return History
      */
     public function setDetails($value)
     {
         $this->propertyUpdated('Details', $value);
         $this->_data['Details'] = $value;
-
         return $this;
     }
 
@@ -132,12 +125,12 @@ class History extends Model
         return false;
     }
 
-    public static function getAPIStem()
+    static function getAPIStem()
     {
         return '';
     }
 
-    public static function getRootNodeName()
+    static function getRootNodeName()
     {
         // TODO: Implement getRootNodeName() method.
     }

@@ -6,10 +6,7 @@ use XeroPHP\Application;
 
 class PrivateApplication extends Application
 {
-    /**
-     * @param array $config
-     */
-    public function __construct(array $config)
+    public function __construct($config)
     {
         //As we don't need to Authorize/RequestToken, it's populated here.
         $config['oauth']['token'] = $config['oauth']['consumer_key'];

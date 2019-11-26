@@ -1,19 +1,20 @@
 <?php
-
 namespace XeroPHP\Models\Accounting;
 
 use XeroPHP\Remote;
 
-class InvoiceReminder extends Remote\Model
+class InvoiceReminder extends Remote\Object
 {
+
+
     /**
-     * Boolean to set when InvocieReminders are turned on in Xero.
+     * Boolean to set when InvocieReminders are turned on in Xero
      *
      * @property bool Enabled
      */
 
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -22,8 +23,9 @@ class InvoiceReminder extends Remote\Model
         return 'InvoiceReminders/Settings';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -32,8 +34,9 @@ class InvoiceReminder extends Remote\Model
         return 'InvoiceReminder';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -42,8 +45,9 @@ class InvoiceReminder extends Remote\Model
         return '';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -52,30 +56,32 @@ class InvoiceReminder extends Remote\Model
         return Remote\URL::API_CORE;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
         return [
-            Remote\Request::METHOD_GET,
+            Remote\Request::METHOD_GET
         ];
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
     public static function getProperties()
     {
         return [
-            'Enabled' => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false],
+            'Enabled' => [false, self::PROPERTY_TYPE_BOOLEAN, null, false, false]
         ];
     }
 
@@ -84,6 +90,7 @@ class InvoiceReminder extends Remote\Model
         return false;
     }
 
+ 
     /**
      * @return bool
      */
@@ -91,4 +98,5 @@ class InvoiceReminder extends Remote\Model
     {
         return $this->_data['Enabled'];
     }
+
 }

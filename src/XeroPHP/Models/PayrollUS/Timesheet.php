@@ -1,5 +1,4 @@
 <?php
-
 namespace XeroPHP\Models\PayrollUS;
 
 use XeroPHP\Remote;
@@ -7,55 +6,57 @@ use XeroPHP\Models\PayrollUS\Timesheet\TimesheetLine;
 
 class Timesheet extends Remote\Model
 {
+
     /**
-     * The Xero identifier for an employee.
+     * The Xero identifier for an employee
      *
      * @property string EmployeeID
      */
 
     /**
-     * Period start date.
+     * Period start date
      *
      * @property \DateTimeInterface StartDate
      */
 
     /**
-     * Period end date.
+     * Period end date
      *
      * @property \DateTimeInterface EndDate
      */
 
     /**
-     * See TimesheetLines.
+     * See TimesheetLines
      *
      * @property TimesheetLine[] TimesheetLines
      */
 
     /**
-     * See Timesheet Status Codes.
+     * See Timesheet Status Codes
      *
      * @property string Status
      */
 
     /**
-     * The Xero identifier for a Payroll Timesheet.
+     * The Xero identifier for a Payroll Timesheet
      *
      * @property string TimesheetID
      */
 
     /**
-     * Timesheet total hours.
+     * Timesheet total hours
      *
      * @property string Hours
      */
-    const STATUS_DRAFT = 'DRAFT';
 
+
+    const STATUS_DRAFT     = 'DRAFT';
     const STATUS_PROCESSED = 'PROCESSED';
+    const STATUS_APPROVED  = 'APPROVED';
 
-    const STATUS_APPROVED = 'APPROVED';
 
     /**
-     * Get the resource uri of the class (Contacts) etc.
+     * Get the resource uri of the class (Contacts) etc
      *
      * @return string
      */
@@ -64,8 +65,9 @@ class Timesheet extends Remote\Model
         return 'Timesheets';
     }
 
+
     /**
-     * Get the root node name.  Just the unqualified classname.
+     * Get the root node name.  Just the unqualified classname
      *
      * @return string
      */
@@ -74,8 +76,9 @@ class Timesheet extends Remote\Model
         return 'Timesheet';
     }
 
+
     /**
-     * Get the guid property.
+     * Get the guid property
      *
      * @return string
      */
@@ -84,8 +87,9 @@ class Timesheet extends Remote\Model
         return 'TimesheetID';
     }
 
+
     /**
-     * Get the stem of the API (core.xro) etc.
+     * Get the stem of the API (core.xro) etc
      *
      * @return string|null
      */
@@ -94,24 +98,26 @@ class Timesheet extends Remote\Model
         return Remote\URL::API_PAYROLL;
     }
 
+
     /**
-     * Get the supported methods.
+     * Get the supported methods
      */
     public static function getSupportedMethods()
     {
         return [
             Remote\Request::METHOD_POST,
-            Remote\Request::METHOD_GET,
+            Remote\Request::METHOD_GET
         ];
     }
 
     /**
+     *
      * Get the properties of the object.  Indexed by constants
      *  [0] - Mandatory
      *  [1] - Type
      *  [2] - PHP type
      *  [3] - Is an Array
-     *  [4] - Saves directly.
+     *  [4] - Saves directly
      *
      * @return array
      */
@@ -124,7 +130,7 @@ class Timesheet extends Remote\Model
             'TimesheetLines' => [false, self::PROPERTY_TYPE_OBJECT, 'PayrollUS\\Timesheet\\TimesheetLine', true, false],
             'Status' => [false, self::PROPERTY_TYPE_ENUM, null, false, false],
             'TimesheetID' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Hours' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Hours' => [false, self::PROPERTY_TYPE_STRING, null, false, false]
         ];
     }
 
@@ -143,14 +149,12 @@ class Timesheet extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Timesheet
      */
     public function setEmployeeID($value)
     {
         $this->propertyUpdated('EmployeeID', $value);
         $this->_data['EmployeeID'] = $value;
-
         return $this;
     }
 
@@ -164,14 +168,12 @@ class Timesheet extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return Timesheet
      */
     public function setStartDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('StartDate', $value);
         $this->_data['StartDate'] = $value;
-
         return $this;
     }
 
@@ -185,19 +187,18 @@ class Timesheet extends Remote\Model
 
     /**
      * @param \DateTimeInterface $value
-     *
      * @return Timesheet
      */
     public function setEndDate(\DateTimeInterface $value)
     {
         $this->propertyUpdated('EndDate', $value);
         $this->_data['EndDate'] = $value;
-
         return $this;
     }
 
     /**
-     * @return Remote\Collection|TimesheetLine[]
+     * @return TimesheetLine[]|Remote\Collection
+     * Always returns a collection, switch is for type hinting
      */
     public function getTimesheetLines()
     {
@@ -206,17 +207,15 @@ class Timesheet extends Remote\Model
 
     /**
      * @param TimesheetLine $value
-     *
      * @return Timesheet
      */
     public function addTimesheetLine(TimesheetLine $value)
     {
         $this->propertyUpdated('TimesheetLines', $value);
-        if (! isset($this->_data['TimesheetLines'])) {
+        if (!isset($this->_data['TimesheetLines'])) {
             $this->_data['TimesheetLines'] = new Remote\Collection();
         }
         $this->_data['TimesheetLines'][] = $value;
-
         return $this;
     }
 
@@ -230,14 +229,12 @@ class Timesheet extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Timesheet
      */
     public function setStatus($value)
     {
         $this->propertyUpdated('Status', $value);
         $this->_data['Status'] = $value;
-
         return $this;
     }
 
@@ -251,14 +248,12 @@ class Timesheet extends Remote\Model
 
     /**
      * @param string $value
-     *
      * @return Timesheet
      */
     public function setTimesheetID($value)
     {
         $this->propertyUpdated('TimesheetID', $value);
         $this->_data['TimesheetID'] = $value;
-
         return $this;
     }
 
@@ -269,4 +264,7 @@ class Timesheet extends Remote\Model
     {
         return $this->_data['Hours'];
     }
+
+
+
 }
